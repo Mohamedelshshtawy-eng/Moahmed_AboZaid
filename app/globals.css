@@ -4,25 +4,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Saudi Green & Gold Theme */
-  --background: #021b0d;
+  /* Saudi Black & Gold Theme */
+  --background: #2a2a2a;
   --foreground: #eaeaea;
-  --card: #0a2e15;
+  --card: #333333;
   --card-foreground: #eaeaea;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #073f1d;
+  --primary: #404040;
   --primary-foreground: #eaeaea;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: #556b6b;
   --muted-foreground: #b0b0b0;
   --accent: #d4af37;
-  --accent-foreground: #021b0d;
+  --accent-foreground: #2a2a2a;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #1a5c2f;
-  --input: #0a2e15;
+  --border: #404040;
+  --input: #333333;
   --ring: #d4af37;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -41,20 +41,20 @@
 }
 
 .dark {
-  --background: #021b0d;
+  --background: #2a2a2a;
   --foreground: #eaeaea;
   --card: oklch(0.145 0 0);
   --card-foreground: #eaeaea;
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: #073f1d;
+  --primary: #404040;
   --primary-foreground: #eaeaea;
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: #d4af37;
-  --accent-foreground: #021b0d;
+  --accent-foreground: #2a2a2a;
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
@@ -174,7 +174,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #021b0d;
+  background: #2a2a2a;
 }
 
 ::-webkit-scrollbar-thumb {
