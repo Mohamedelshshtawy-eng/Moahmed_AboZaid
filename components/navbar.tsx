@@ -26,7 +26,7 @@ export function Navbar() {
   ]
 
   const handleWhatsApp = () => {
-    const phoneNumber = "966" // Replace with actual WhatsApp number
+    const phoneNumber = "+966502690349" // Replace with actual WhatsApp number
     const message = "Hello, I'm interested in your travel services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }
