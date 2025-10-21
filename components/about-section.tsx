@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Award, Users, Globe } from "lucide-react"
 import Image from "next/image"
-import  one  from "../public/one.jpeg"
+import  last  from "../public/last.jpeg"
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -56,7 +56,7 @@ export function AboutSection() {
             <div className="relative w-full max-w-md mx-auto">
               <div className="absolute -inset-1 bg-gradient-to-tr from-yellow-500 via-yellow-300 to-yellow-600 rounded-2xl blur-lg opacity-40"></div>
               <Image
-                src={one}
+                src={last}
                 alt="Mohamed Abo Zaid"
                 width={500}
                 height={600}
