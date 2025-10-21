@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
+import { useLanguage } from "@/lib/language-context";
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,13 +30,17 @@ export function ContactSection() {
     e.preventDefault();
 
     const phoneNumber = "966502690349"; // رقم واتساب محمد أبو زيد بدون +
-    const message = `
-*New Travel Inquiry*
+    const message = language === 'ar' 
+      ? `*استفسار سفر جديد*
+
+👤 الاسم: ${formData.name}
+📞 الهاتف: ${formData.phone}
+💬 الرسالة: ${formData.message}`
+      : `*New Travel Inquiry*
 
 👤 Name: ${formData.name}
 📞 Phone: ${formData.phone}
-💬 Message: ${formData.message}
-    `;
+💬 Message: ${formData.message}`;
 
     // فتح واتساب مباشرة
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
@@ -45,7 +51,9 @@ export function ContactSection() {
 
   const handleWhatsApp = () => {
     const phoneNumber = "966502690349";
-    const message = "Hello, I’d like to know more about your travel services.";
+    const message = language === 'ar' 
+      ? "مرحباً، أود معرفة المزيد عن خدمات السفر الخاصة بك."
+      : "Hello, I'd like to know more about your travel services.";
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -65,7 +73,7 @@ export function ContactSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            Get in <span className="text-accent">Touch</span>
+            {t('contact.title')} <span className="text-accent">Touch</span>
           </h2>
           <p
             className={`text-lg text-muted-foreground transition-all duration-1000 transform ${
@@ -73,7 +81,7 @@ export function ContactSection() {
             }`}
             style={{ transitionDelay: "100ms" }}
           >
-            Ready to start your journey? Contact me today
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -115,7 +123,7 @@ export function ContactSection() {
               className="mt-8 w-full py-4 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold rounded-xl hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
             >
               <MessageCircle size={20} />
-              Chat on WhatsApp
+              {t('contact.whatsapp')}
             </button>
           </div>
 
@@ -129,7 +137,7 @@ export function ContactSection() {
               {/* الاسم */}
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                  Full Name
+                  {t('contact.name')}
                 </label>
                 <input
                   type="text"
@@ -139,14 +147,14 @@ export function ContactSection() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-primary/50 border-2 border-accent/20 rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent/60 transition-colors duration-300"
-                  placeholder="Your name"
+                  placeholder={language === 'ar' ? 'اسمك الكامل' : 'Your name'}
                 />
               </div>
 
               {/* رقم الجوال */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
-                  Phone Number
+                  {t('contact.phone')}
                 </label>
                 <input
                   type="tel"
@@ -156,14 +164,14 @@ export function ContactSection() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-primary/50 border-2 border-accent/20 rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent/60 transition-colors duration-300"
-                  placeholder="+966 ..."
+                  placeholder={language === 'ar' ? '+966 ...' : '+966 ...'}
                 />
               </div>
 
               {/* الرسالة */}
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                  Message
+                  {t('contact.message')}
                 </label>
                 <textarea
                   id="message"
@@ -173,7 +181,7 @@ export function ContactSection() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-primary/50 border-2 border-accent/20 rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent/60 transition-colors duration-300 resize-none"
-                  placeholder="Tell me about your travel plans..."
+                  placeholder={language === 'ar' ? 'أخبرني عن خطط سفرك...' : 'Tell me about your travel plans...'}
                 />
               </div>
 
@@ -183,7 +191,7 @@ export function ContactSection() {
                 className="w-full py-4 bg-accent text-accent-foreground font-semibold rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
               >
                 <Send size={20} />
-                Send Message
+                {t('contact.send')}
               </button>
             </form>
           </div>

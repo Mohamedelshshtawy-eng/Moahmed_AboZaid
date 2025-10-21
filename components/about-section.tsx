@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Award, Users, Globe } from "lucide-react"
 import Image from "next/image"
+import { useLanguage } from "@/lib/language-context"
 import  last  from "../public/last.jpeg"
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,18 +30,18 @@ export function AboutSection() {
   const highlights = [
     {
       icon: Award,
-      title: "7+ Years Experience",
-      description: "Dedicated to providing exceptional travel services",
+      title: t('about.experience'),
+      description: t('about.experience.desc'),
     },
     {
       icon: Users,
-      title: "Trusted by Companies",
-      description: "Partnered with major corporations for group travel",
+      title: t('about.trusted'),
+      description: t('about.trusted.desc'),
     },
     {
       icon: Globe,
-      title: "Personalized Arrangements",
-      description: "Customized itineraries for every traveler",
+      title: t('about.personalized'),
+      description: t('about.personalized.desc'),
     },
   ]
 
@@ -72,19 +74,15 @@ export function AboutSection() {
             }`}
           >
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-              About <span className="text-accent">Mohamed</span>
+              {t('about.title')} <span className="text-accent">{t('about.mohamed')}</span>
             </h2>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              As a licensed travel agent with over a decade of experience, I specialize in connecting travelers to the
-              most authentic and meaningful experiences in Saudi Arabia. My mission is to make your journey seamless,
-              comfortable, and unforgettable.
+              {t('about.description1')}
             </p>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Whether you're seeking spiritual fulfillment through Umrah or Hajj, or exploring the breathtaking
-              landscapes and rich culture of Saudi Arabia, I work directly with top-tier travel agencies to ensure you
-              receive the best service possible.
+              {t('about.description2')}
             </p>
 
             {/* Highlights */}

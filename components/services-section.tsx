@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Plane, MSquare as Mosque, MapPin } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,23 +29,20 @@ export function ServicesSection() {
   const services = [
     {
       icon: Plane,
-      title: "Umrah Packages",
-      description:
-        "Easy visa processing and hotel booking for your spiritual journey. Comprehensive packages including flights, accommodation, and guided tours.",
+      title: t('services.umrah.title'),
+      description: t('services.umrah.desc'),
       features: ["Visa Assistance", "Hotel Booking", "Airport Transfer", "24/7 Support"],
     },
     {
       icon: Mosque,
-      title: "Hajj Guidance",
-      description:
-        "Partnered with certified Hajj companies to provide complete guidance. Expert coordination for a smooth and meaningful pilgrimage experience.",
+      title: t('services.hajj.title'),
+      description: t('services.hajj.desc'),
       features: ["Expert Guidance", "Certified Partners", "Group Coordination", "Ritual Support"],
     },
     {
       icon: MapPin,
-      title: "Saudi Tourism",
-      description:
-        "Explore the diverse destinations across the Kingdom. From ancient heritage sites to modern attractions, discover Saudi Arabia's wonders.",
+      title: t('services.tourism.title'),
+      description: t('services.tourism.desc'),
       features: ["Destination Planning", "Cultural Tours", "Adventure Activities", "Local Experiences"],
     },
   ]
@@ -58,7 +57,7 @@ export function ServicesSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            Our <span className="text-accent">Services</span>
+            {t('services.title')} <span className="text-accent">Services</span>
           </h2>
           <p
             className={`text-lg text-muted-foreground max-w-2xl mx-auto transition-all duration-1000 transform ${
@@ -66,7 +65,7 @@ export function ServicesSection() {
             }`}
             style={{ transitionDelay: "100ms" }}
           >
-            Comprehensive travel solutions tailored to your needs
+            {t('services.subtitle')}
           </p>
         </div>
 

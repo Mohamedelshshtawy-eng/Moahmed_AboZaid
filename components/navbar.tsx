@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, MessageCircle } from "lucide-react"
+import { Menu, X, MessageCircle, Languages } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const { language, setLanguage, t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,16 +20,22 @@ export function Navbar() {
   }, [])
 
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Partners", href: "#partners" },
-    { label: "Contact", href: "#contact" },
+    { label: t('nav.home'), href: "#home" },
+    { label: t('nav.about'), href: "#about" },
+    { label: t('nav.services'), href: "#services" },
+    { label: t('nav.partners'), href: "#partners" },
+    { label: t('nav.contact'), href: "#contact" },
   ]
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ar' : 'en')
+  }
 
   const handleWhatsApp = () => {
     const phoneNumber = "+966502690349" // Replace with actual WhatsApp number
-    const message = "Hello, I'm interested in your travel services."
+    const message = language === 'ar' 
+      ? "مرحباً، أنا مهتم بخدمات السفر الخاصة بك."
+      : "Hello, I'm interested in your travel services."
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank")
   }
 
@@ -62,11 +70,18 @@ export function Navbar() {
               </a>
             ))}
             <button
+              onClick={toggleLanguage}
+              className="px-3 py-2 border border-accent/30 text-accent hover:bg-accent/10 rounded-lg transition-all duration-300 flex items-center gap-2 text-sm font-medium"
+            >
+              <Languages size={16} />
+              {language === 'en' ? 'عربي' : 'English'}
+            </button>
+            <button
               onClick={handleWhatsApp}
               className="px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center gap-2 text-sm font-semibold"
             >
               <MessageCircle size={16} />
-              Chat
+              {t('nav.chat')}
             </button>
           </div>
 
@@ -91,13 +106,23 @@ export function Navbar() {
             ))}
             <button
               onClick={() => {
+                toggleLanguage()
+                setIsOpen(false)
+              }}
+              className="w-full px-4 py-2 border border-accent/30 text-accent hover:bg-accent/10 rounded transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <Languages size={16} />
+              {language === 'en' ? 'عربي' : 'English'}
+            </button>
+            <button
+              onClick={() => {
                 handleWhatsApp()
                 setIsOpen(false)
               }}
               className="w-full px-4 py-2 bg-accent text-accent-foreground rounded font-semibold hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <MessageCircle size={16} />
-              Chat on WhatsApp
+              {t('nav.chat.whatsapp')}
             </button>
           </div>
         )}

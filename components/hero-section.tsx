@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { ChevronDown } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     setIsVisible(true)
@@ -32,24 +34,23 @@ export function HeroSection() {
           }`}
         >
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Your Trusted Travel Agent in <span className="text-accent animate-glow">Saudi Arabia</span>
+            {t('hero.title')} <span className="text-accent animate-glow">{t('hero.saudi')}</span>
           </h1>
 
           <p className="text-xl sm:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Specialized in Umrah, Hajj, and Saudi Tourism Services
+            {t('hero.subtitle')}
           </p>
 
           <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-            With over 7 years of experience, I connect you to the heart of Saudi Arabia with trust, care, and
-            expertise.
+            {t('hero.description')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <a href="#contact" className="px-8 py-4 bg-accent text-accent-foreground font-semibold rounded-lg hover:shadow-lg hover:shadow-accent/50 transition-all duration-300 transform hover:scale-105 animate-glow">
-              Book Now
+              {t('hero.book')}
             </a>
             <a href="#about" className="px-8 py-4 border-2 border-accent text-accent font-semibold rounded-lg hover:bg-accent/10 transition-all duration-300">
-              Learn More
+              {t('hero.learn')}
             </a>
           </div>
         </div>
